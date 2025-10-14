@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Editar Cliente</h1>
+    <form action="" method="POST">
+        <input type="text" name="nombre" value="{{ cliente.nombre }}" required>
+        <input type="text" name="apellido" value="{{ cliente.apellido }}" required>
+        <input type="email" name="email" value="{{ cliente.email }}" required>
+        <button type="submit">Actualizar</button>
+    </form>
+</body>
+</html>
