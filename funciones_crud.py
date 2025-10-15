@@ -1,9 +1,9 @@
 from conexion import conectar
 
-def agregar_cliente(nombre, apellido, email):
+def agregar_cliente(nombre, apellido, email, dirección, teléfono):
     conexion = conectar()
     cursor = conexion.cursor()
-    cursor.execute("INSERT INTO clientes (nombre, apellido, email) VALUES (%s, %s, %s)", (nombre, apellido, email))
+    cursor.execute("INSERT INTO clientes (nombre, apellido, email, dirección, teléfono ) VALUES (%s, %s, %s, %s, %s)", (nombre, apellido, email, dirección, teléfono))
     conexion.commit()
     conexion.close()
 
@@ -23,10 +23,10 @@ def obtener_cliente(id):
     conexion.close()
     return resultado
 
-def actualizar_cliente(id, nombre, apellido, email):
+def actualizar_cliente(id, nombre, apellido, email, dirección, teléfono):
     conexion = conectar()
     cursor = conexion.cursor()
-    cursor.execute("UPDATE clientes SET nombre=%s, apellido=%s, email=%s WHERE id=%s", (nombre, apellido, email, id))
+    cursor.execute("UPDATE clientes SET nombre=%s, apellido=%s, email=%s,  dirección=%s, teléfono=%s WHERE id=%s", (nombre, apellido, email, dirección, teléfono, id))
     conexion.commit()
     conexion.close()
 

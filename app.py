@@ -13,7 +13,11 @@ def agregar():
     nombre = request.form['nombre']
     apellido = request.form['apellido']
     email = request.form['email']
-    agregar_cliente(nombre, apellido, email)
+    dirección = request.form['dirección']
+    teléfono = request.form['teléfono']
+
+
+    agregar_cliente(nombre, apellido, email, dirección, teléfono)
     return redirect('/')
 
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
@@ -23,7 +27,11 @@ def editar(id):
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         email = request.form['email']
-        actualizar_cliente(id, nombre, apellido, email)
+        dirección = request.form['dirección']
+        teléfono = request.form['teléfono']
+
+
+        actualizar_cliente(id, nombre, apellido, email, dirección, teléfono)
         return redirect('/')
     return render_template('editar.html', cliente=cliente)
 

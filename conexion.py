@@ -1,6 +1,6 @@
 import mysql.connector
 
-def conexion_mysql():
+def conectar():
  conexion= mysql.connector.connect(
      user="root",
      password="",

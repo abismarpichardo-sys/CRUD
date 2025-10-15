@@ -2,35 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD Clientes</title>
+    <title>Lista de Clientes</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Lista de Clientes</h1>
-    <form action="/agregar" method="POST">
-        <input type="text" name="nombre" placeholder="Nombre" required>
-        <input type="text" name="apellido" placeholder="Apellido" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <button type="submit">Agregar</button>
-    </form>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Acciones</th>
-        </tr>
-        {% for cliente in clientes %}
-        <tr>
-            <td>{{ cliente.nombre }}</td>
-            <td>{{ cliente.apellido }}</td>
-            <td>{{ cliente.email }}</td>
-            <td>
-                <a href="/editar/{{ cliente.id }}">Editar</a>
-                <a href="/eliminar/{{ cliente.id }}">Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h1 class="titulo">Lista de Clientes</h1>
+
+        <form action="/agregar" method="POST" class="input-form">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido" placeholder="Apellido" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="teléfono" placeholder="Teléfono">
+            <input type="text" name="dirección" placeholder="Dirección">
+            
+            <button type="submit" class="btn-agregar">Agregar</button>
+        </form>
+
+        <table id="tablaClientes">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>EMAIL</th>
+                    <th>TELÉFONO</th>
+                    <th>DIRECCIÓN</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.teléfono }}</td>
+                    <td>{{ cliente.dirección }}</td>
+                    <td>
+                        <a href="/editar/{{ cliente.id }}" class="btn-accion btn-editar"><i class="fas fa-pencil-alt"></i> Editar</a>
+                        <a href="/eliminar/{{ cliente.id }}" class="btn-accion btn-eliminar"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

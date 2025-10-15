@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Editar Cliente</h1>
-    <form action="" method="POST">
-        <input type="text" name="nombre" value="{{ cliente.nombre }}" required>
-        <input type="text" name="apellido" value="{{ cliente.apellido }}" required>
-        <input type="email" name="email" value="{{ cliente.email }}" required>
-        <button type="submit">Actualizar</button>
-    </form>
+    <div class="container">
+        <h1 class="titulo">Editar Cliente</h1>
+        <form action="" method="POST" class="input-form">
+            <input type="text" name="nombre" value="{{ cliente.nombre }}" placeholder="Nombre" required>
+            <input type="text" name="apellido" value="{{ cliente.apellido }}" placeholder="Apellido" required>
+            <input type="email" name="email" value="{{ cliente.email }}" placeholder="Email" required>
+            <input type="text" name="teléfono" value="{{ cliente.teléfono }}" placeholder="Teléfono" required>
+            <input type="text" name="dirección" value="{{ cliente.dirección }}" placeholder="Dirección" required>
+
+            <button type="submit" class="btn-agregar">Actualizar</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px;"><a href="/" style="color: #4b6cb7;">← Volver a la Lista</a></p>
+    </div>
 </body>
 </html>
+
