@@ -1,175 +1,157 @@
-/* --- Paleta y Variables del Diseño Original --- */
-:root {
-    /* Fondo del body, degradado exterior */
-    --color-fondo-exterior: linear-gradient(135deg, #a4e9f2, #ebc4f0); 
-    /* Título morado/azul */
-    --color-titulo: #5e35b1; 
-    /* Colores para el degradado de la cabecera de la tabla y botón Agregar */
-    --color-degradado-inicio: #4b6cb7; 
-    --color-degradado-fin: #182848; 
-    /* Fondo de filas alternas */
-    --color-fila-clara: #e3afaf;
-    --color-fila-oscura: #93c6cd; 
-    /* Botones de acción */
-    --color-editar: #1e88e5; 
-    --color-eliminar: #e53935; 
-}
-
-/* --- Estilos Globales y Contenedor --- */
+/* Estilo general del body */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 30px 20px;
-    /* Aplicar el degradado exterior en el fondo del body */
-    background-image: var(--color-fondo-exterior); 
-    color: #2c3e50;
+    padding: 0;
+    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+    color: #333;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
 }
 
+/*  Contenedor principal */
 .container {
-    width: 95%;
-    max-width: 1200px;
+    max-width: 1100px;
+    margin: 40px auto;
     padding: 30px;
     background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra marcada */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-in-out;
 }
 
-/* 🏷️ Título */
-.titulo {
-    color: var(--color-titulo); 
-    font-size: 2em;
-    font-weight: 700;
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Encabezados */
+h1, h2, h3 {
     text-align: center;
-    margin-bottom: 30px;
+    color: #240582;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
-/* 📝 Formulario de Entrada (Inputs y Botón Agregar) */
-.input-form {
+/*  Tabla moderna */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+th {
+    background: linear-gradient(90deg, #240582, #52b3dc);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e8f5e9;
+    transition: background-color 0.3s;
+}
+
+/*  Formularios */
+form {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 25px;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que los inputs se ajusten en pantallas pequeñas */
+    margin-top: 20px;
     justify-content: center;
 }
 
-.input-form input {
-    padding: 10px 15px;
+form input, form select {
+    padding: 10px 12px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    flex-grow: 1;
-    max-width: 180px; 
+    border-radius: 8px;
     font-size: 1em;
-    box-shadow: none; 
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    width: 250px;
 }
 
-.input-form input:focus {
-    border-color: var(--color-titulo);
+form input:focus, form select:focus {
+    border-color: #240582;
+    outline: none;
+    box-shadow: 0 0 6px rgba(50, 161, 235, 0.4);
 }
 
-.btn-agregar {
-    /* Botón Agregar con degradado */
-    background: linear-gradient(to right, var(--color-degradado-inicio), var(--color-degradado-fin));
+/*  Botones */
+button, input[type="submit"], input[type="reset"] {
+    background: linear-gradient(90deg, #240582, #240582);
     color: white;
-    padding: 10px 25px;
+    padding: 10px 20px;
+    margin: 5px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
-}
-
-.btn-agregar:hover {
-    opacity: 0.9;
-    transform: none; 
-}
-
-/* --- Tabla de Clientes Estilizada --- */
-#tablaClientes {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 8px; 
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Cabecera (thead) con Degradado */
-#tablaClientes thead th {
-    background-image: linear-gradient(to right, var(--color-degradado-inicio), var(--color-degradado-fin));
-    color: white;
-    padding: 15px 10px;
-    text-align: left;
     font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.5px;
-    border: none; 
+    transition: all 0.3s ease;
 }
 
-/* Estilo de las Celdas de Datos (tbody) */
-#tablaClientes tbody td {
-    padding: 12px 10px;
-    color: #333;
-    border: none; 
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+    background: linear-gradient(90deg, #240582, #52b3dc);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Estilo para Filas Alternas (cebreado) */
-#tablaClientes tbody tr:nth-child(odd) {
-    background-color: var(--color-fila-clara); 
+/*  Responsividad */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+    form input {
+        width: 100%;
+    }
 }
 
-#tablaClientes tbody tr:nth-child(even) {
-    background-color: var(--color-fila-oscura); 
+/*  Botones de acción (Editar / Eliminar) */
+.acciones {
+    text-align: center;
 }
 
-#tablaClientes tbody tr:hover {
-    background-color: #c9e6ff; 
-    transition: 0.2s;
-}
-
-/* --- Estilos de Botones de Acción (Enlaces) --- */
-.btn-accion {
-    padding: 6px 12px;
-    margin-right: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85em;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.1s;
-    color: white; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.btn-editar, .btn-eliminar {
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
     display: inline-block;
-    text-decoration: none; 
 }
 
-.btn-accion i {
-    margin-right: 5px; 
-}
-
-/* Botón Editar (Azul) */
 .btn-editar {
-    background-color: var(--color-editar);
+    background-color: #240582; /* Azul */
 }
 
 .btn-editar:hover {
-    background-color: #1565c0;
-    transform: translateY(-1px);
+    background-color: #240582;
+    transform: translateY(-2px);
 }
 
-/* Botón Eliminar (Rojo) */
 .btn-eliminar {
-    background-color: var(--color-eliminar);
+    background-color: #240582; /* Azul */
+    margin-left: 5px;
 }
 
 .btn-eliminar:hover {
-    background-color: #c62828;
-    transform: translateY(-1px);
+    background-color: #240582;
+    transform: translateY(-2px);
 }
+
