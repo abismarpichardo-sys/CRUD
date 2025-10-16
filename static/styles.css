@@ -3,12 +3,12 @@ body {
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+    background: linear-gradient(135deg, #b5eef2, #828ea4);
     color: #333;
     min-height: 100vh;
 }
 
-/*  Contenedor principal */
+/* Contenedor principal */
 .container {
     max-width: 1100px;
     margin: 40px auto;
@@ -28,12 +28,12 @@ body {
 /* Encabezados */
 h1, h2, h3 {
     text-align: center;
-    color: #240582;
+    color: #1f035f;
     margin-bottom: 15px;
     letter-spacing: 1px;
 }
 
-/*  Tabla moderna */
+/* Tabla moderna */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -64,13 +64,13 @@ tr:hover {
     transition: background-color 0.3s;
 }
 
-/*  Formularios */
+/* Formularios */
 form {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;  /* campos verticales */
+    gap: 15px;               /* espacio entre campos */
     margin-top: 20px;
-    justify-content: center;
+    align-items: center;     /* centra los inputs */
 }
 
 form input, form select {
@@ -79,7 +79,7 @@ form input, form select {
     border-radius: 8px;
     font-size: 1em;
     transition: all 0.3s ease;
-    width: 250px;
+    width: 300px;            /* ancho fijo de los inputs */
 }
 
 form input:focus, form select:focus {
@@ -88,7 +88,7 @@ form input:focus, form select:focus {
     box-shadow: 0 0 6px rgba(50, 161, 235, 0.4);
 }
 
-/*  Botones */
+/* Botones */
 button, input[type="submit"], input[type="reset"] {
     background: linear-gradient(90deg, #240582, #240582);
     color: white;
@@ -107,21 +107,17 @@ button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/*  Responsividad */
+/* Responsividad */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
-    }
-    form {
-        flex-direction: column;
-        align-items: center;
     }
     form input {
         width: 100%;
     }
 }
 
-/*  Botones de acción (Editar / Eliminar) */
+/* Botones de acción (Editar / Eliminar) */
 .acciones {
     text-align: center;
 }
@@ -137,21 +133,54 @@ button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
 }
 
 .btn-editar {
-    background-color: #240582; /* Azul */
+    background-color: #fbb93e; /* Azul */
 }
 
 .btn-editar:hover {
-    background-color: #240582;
+    background-color: #05825a;
     transform: translateY(-2px);
 }
 
 .btn-eliminar {
-    background-color: #240582; /* Azul */
+    background-color: #f43232; /* Azul */
     margin-left: 5px;
 }
 
 .btn-eliminar:hover {
-    background-color: #240582;
+    background-color: #04000c;
     transform: translateY(-2px);
 }
+
+/* Botón Mostrar Todos */
+.btn-mostrar-todos {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 8px 14px;
+    background-color: #240582;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-mostrar-todos:hover { background-color: #52b3dc; }
+
+/* Popup tipo MessageBox */
+#popup-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-weight: 600;
+    display: none; /* inicialmente oculto */
+}
+
+
 
