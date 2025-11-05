@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="header-container">
+        <h1><i class="fas fa-eye"></i> Detalle del Cliente ID: {{ cliente.id }}</h1>
+        <div class="actions-group">
+            <a href="{{ url_for('editar', id=cliente.id) }}" class="btn-primary">
+                <i class="fas fa-edit"></i> Editar Cliente
+            </a>
+            <a href="{{ url_for('index') }}" class="btn-cancel">
+                <i class="fas fa-arrow-left"></i> Volver al Listado
+            </a>
+        </div>
+    </div>
+
+    <div class="detail-container">
+        
+        {% if cliente.person_type == 'NATURAL' %}
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> Información Persona Natural</h2>
+            <div class="detail-row">
+                <div class="detail-item"><strong>Nombre Completo:</strong> {{ cliente.full_name }}</div>
+                <div class="detail-item"><strong>Cédula/DNI:</strong> {{ cliente.id_card_number }}</div>
+            </div>
+
+        {% elif cliente.person_type == 'LEGAL' %}
+            <h2 class="section-title"><i class="fas fa-building"></i> Información Persona Legal (Empresa)</h2>
+            <div class="detail-row">
+                <div class="detail-item"><strong>Razón Social:</strong> {{ cliente.company_name }}</div>
+                <div class="detail-item"><strong>RUC/NIF:</strong> {{ cliente.ruc }}</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-item"><strong>Rubro/Industria:</strong> {{ cliente.industry }}</div>
+                <div class="detail-item"><strong>Código CIUU:</strong> {{ cliente.codigo_ciiu }}</div>
+            </div>
+        {% endif %}
+
+        <hr>
+
+        <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Contacto y Ubicación</h2>
+        <div class="detail-row">
+            <div class="detail-item"><strong>Email:</strong> {{ cliente.email }}</div>
+            <div class="detail-item"><strong>Teléfono:</strong> {{ cliente.phone }}</div>
+        </div>
+        <div class="detail-row full-width">
+            <div class="detail-item"><strong>Ciudad:</strong> {{ cliente.city }}</div>
+            <div class="detail-item"><strong>Dirección:</strong> {{ cliente.address }}</div>
+        </div>
+        
+        <style>
+            .detail-container { padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; }
+            .section-title { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-top: 20px; margin-bottom: 15px; }
+            .detail-row { display: flex; flex-wrap: wrap; margin-bottom: 10px; }
+            .detail-item { flex: 1; min-width: 45%; padding: 5px 0; }
+            .full-width .detail-item { min-width: 100%; }
+        </style>
+    </div>
+
+{% endblock %}

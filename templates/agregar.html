@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="header-container">
+        <h1><i class="fas fa-user-plus"></i> Registrar Nuevo Cliente</h1>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('agregar') }}" method="POST" class="form-container">
+        
+        <div class="form-group-radio">
+            <label>Tipo de Persona</label>
+            <div class="radio-options">
+                <input type="radio" id="type_natural" name="person_type" value="NATURAL" checked onchange="toggleFields()">
+                <label for="type_natural">Natural</label>
+
+                <input type="radio" id="type_legal" name="person_type" value="LEGAL" onchange="toggleFields()">
+                <label for="type_legal">Legal (Empresa)</label>
+            </div>
+        </div>
+
+        <div id="dynamic-fields">
+            </div>
+
+        <script>
+            function toggleFields() {
+                const type = document.querySelector('input[name="person_type"]:checked').value;
+                const dynamicFields = document.getElementById('dynamic-fields');
+
+                if (type === 'NATURAL') {
+                    dynamicFields.innerHTML = `
+                        <h2><i class="fas fa-user"></i> Datos Persona Natural</h2>
+                        <div class="form-group">
+                            <label for="full_name">Nombre Completo</label>
+                            <input type="text" name="full_name" placeholder="Nombre y Apellido" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_card_number">Cédula/DNI</label>
+                            <input type="text" name="id_card_number" placeholder="Cédula/DNI" required>
+                        </div>
+                    `;
+                } else if (type === 'LEGAL') {
+                    dynamicFields.innerHTML = `
+                        <h2><i class="fas fa-building"></i> Datos Persona Legal (Empresa)</h2>
+                        <div class="form-group">
+                            <label for="company_name">Razón Social</label>
+                            <input type="text" name="company_name" placeholder="Razón Social/Empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ruc">RUC/NIF</label>
+                            <input type="text" name="ruc" placeholder="RUC/NIF" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Rubro/Industria</label>
+                            <input type="text" name="industry" placeholder="Rubro/Industria" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo_ciiu">Código CIUU</label>
+                            <input type="text" name="codigo_ciiu" placeholder="Código CIUU" required>
+                        </div>
+                    `;
+                }
+            }
+
+            // Inicializar los campos al cargar la página (muestra Natural por defecto)
+            document.addEventListener('DOMContentLoaded', toggleFields);
+        </script>
+
+        <hr>
+        <h2><i class="fas fa-map-marker-alt"></i> Datos Comunes y Contacto</h2>
+
+        <div class="form-group">
+            <label for="phone">Teléfono</label>
+            <input type="tel" name="phone" placeholder="Teléfono" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="city">Ciudad</label>
+            <input type="text" name="city" placeholder="Ciudad" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" name="address" placeholder="Dirección Completa" required>
+        </div>
+
+        <button type="submit" class="btn-primary-submit"><i class="fas fa-save"></i> Guardar Cliente</button>
+    </form>
+
+{% endblock %}

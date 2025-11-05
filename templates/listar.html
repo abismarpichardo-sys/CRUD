@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="header-container">
+        <h1><i class="fas fa-users"></i> Listado de Clientes</h1>
+        
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="filter-search-container">
+        <form action="{{ url_for('buscar') }}" method="GET" class="search-form">
+            <input type="text" name="filtro" placeholder="Buscar por Nombre, Cédula, RUC, Email..." value="{{ filtro if filtro else '' }}">
+            <button type="submit" class="btn-secondary"><i class="fas fa-search"></i> Buscar</button>
+        </form>
+
+        <div class="filter-type-group">
+            <a href="{{ url_for('buscar') }}" class="btn-filter {% if not filtro_tipo %}active{% endif %}">Todos</a>
+            <a href="{{ url_for('buscar', tipo='NATURAL') }}" class="btn-filter {% if filtro_tipo == 'NATURAL' %}active{% endif %}">Naturales</a>
+            <a href="{{ url_for('buscar', tipo='LEGAL') }}" class="btn-filter {% if filtro_tipo == 'LEGAL' %}active{% endif %}">Empresas</a>
+        </div>
+    </div>
+
+    {% if clientes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Nombre / Razón Social</th> 
+                    <th>Cédula / RUC</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.id }}</td>
+                    <td>
+                        {% if cliente.person_type == 'NATURAL' %}
+                            <span class="badge-natural">Natural</span>
+                        {% else %}
+                            <span class="badge-legal">Legal</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if cliente.person_type == 'NATURAL' %}
+                            {{ cliente.full_name }}
+                        {% else %}
+                            {{ cliente.company_name }}
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if cliente.person_type == 'NATURAL' %}
+                            {{ cliente.id_card_number }}
+                        {% else %}
+                            {{ cliente.ruc }}
+                        {% endif %}
+                    </td>
+                    
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.phone }}</td>
+                    
+                    <td class="acciones">
+                        <a href="{{ url_for('ver_cliente', id=cliente.id) }}" class="btn-action btn-ver">
+                            <i class="fas fa-eye"></i> 
+                            <div class="underline"></div> 
+                        </a>
+                        
+                        <a href="{{ url_for('eliminar', id=cliente.id) }}" class="btn-action btn-eliminar" onclick="return confirm('¿Seguro que deseas eliminar el cliente {{ cliente.id }}?')">
+                            <i class="fas fa-trash-alt"></i> 
+                            <div class="underline"></div> 
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-results">No se encontraron clientes que coincidan con la búsqueda o filtro.</p>
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -5,6 +5,6 @@ def conectar():
      user="root",
      password="",
      host="localhost",
-     database="Clientes" )
+     database="DB_CLIENTES" )
  return conexion
 

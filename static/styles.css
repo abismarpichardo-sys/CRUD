@@ -1,172 +1,333 @@
-/* Estilo general del body */
+/* ==================================================
+   ESTILO GLOBAL
+================================================== */
 body {
-    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, hsl(200, 94%, 64%), #0c0c0c);
+    background-color: #f0f2f5;
     color: #333;
     min-height: 100vh;
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
+/* ==================================================
+   LAYOUT PRINCIPAL
+================================================== */
+.main-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+.sidebar {
+    width: 250px;
+    background-color: #36404a;
+    color: white;
+    padding-top: 20px;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header {
+    font-size: 1.3em;
+    font-weight: 600;
+    text-align: left;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-header i {
+    margin-right: 10px;
+    font-size: 1.5em;
+    color: white;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #b0b4ba;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item i {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.nav-item:hover {
+    background-color: #3e4d5a;
+    color: white;
+}
+
+.nav-item.active {
+    background-image: linear-gradient(to right, #5d9cec, #4b6cb7);
+    border-left: 3px solid #4b6cb7;
+    color: white;
+    font-weight: 600;
+}
+
+/* ==================================================
+   CONTENIDO PRINCIPAL
+================================================== */
+.content-area {
+    flex-grow: 1;
     padding: 30px;
-    background-color: #f8f8f9;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.6s ease-in-out;
+    background-color: #f0f2f5;
 }
 
-/* Animación de entrada */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
-/* Encabezados */
-h1, h2, h3 {
-    text-align: center;
-    color: #3939f3;
+h1 i {
+    margin-right: 10px;
+    color: #4b6cb7;
+    font-size: 1.3em;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 25px;
     margin-bottom: 15px;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
 }
 
-/* Tabla moderna */
+h2 i {
+    margin-right: 8px;
+    color: #4b6cb7;
+}
+
+/* ==================================================
+   FORMULARIOS
+================================================== */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #4b6cb7;
+    box-shadow: 0 0 6px rgba(75, 108, 183, 0.2);
+    outline: none;
+}
+
+/* Campos dinámicos */
+#dynamic-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    border: 1px dashed #ddd;
+}
+
+/* ==================================================
+   BARRA DE BÚSQUEDA Y FILTROS
+================================================== */
+.filter-search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-form {
+    display: flex;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-form input[type="text"] {
+    border: none;
+    padding: 8px 10px;
+    flex-grow: 1;
+    font-size: 0.9em;
+}
+
+.search-form button {
+    border: none;
+    padding: 8px 12px;
+    background-color: #4b6cb7;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #5d9cec;
+}
+
+.filter-type-group {
+    display: flex;
+    gap: 0;
+}
+
+.btn-filter {
+    background-color: white;
+    color: #4b6cb7;
+    padding: 8px 15px;
+    border: 1px solid #c9d2de;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 0.9em;
+}
+
+.btn-filter:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn-filter:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn-filter.active {
+    background-image: linear-gradient(to bottom, #5d9cec, #4b6cb7);
+    color: white;
+    border-color: #4b6cb7;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.btn-filter:hover {
+    background-color: #e6f0ff;
+}
+
+/* ==================================================
+   TABLA DE CLIENTES
+================================================== */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 25px;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    background-color: white;
+    margin-top: 20px;
 }
 
 th, td {
-    padding: 14px 16px;
+    padding: 12px 15px;
     text-align: left;
+    font-size: 0.9em;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 th {
-    background: linear-gradient(90deg, #240582, #52b3dc);
-    color: white;
+    background-color: #f8f9fa;
+    color: #6c757d;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-weight: 600;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: white;
 }
 
 tr:hover {
-    background-color: #e8f5e9;
-    transition: background-color 0.3s;
+    background-color: #f7f7f7;
 }
 
-/* Formularios */
-form {
-    display: flex;
-    flex-direction: column;  /* campos verticales */
-    gap: 15px;               /* espacio entre campos */
-    margin-top: 20px;
-    align-items: center;     /* centra los inputs */
-}
-
-form input, form select {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1em;
-    transition: all 0.3s ease;
-    width: 300px;            /* ancho fijo de los inputs */
-}
-
-form input:focus, form select:focus {
-    border-color: #240582;
-    outline: none;
-    box-shadow: 0 0 6px rgba(50, 161, 235, 0.4);
-}
-
-/* Botones */
-button, input[type="submit"], input[type="reset"] {
-    background: linear-gradient(90deg, #240582, #240582);
-    color: white;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
-    background: linear-gradient(90deg, #240582, #52b3dc);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-    form input {
-        width: 100%;
-    }
-}
-
-/* Botones de acción (Editar / Eliminar) */
+/* ==================================================
+   BOTONES DE ACCIÓN
+================================================== */
 .acciones {
-    text-align: center;
+    display: flex;
+    gap: 8px;
 }
 
-.btn-editar, .btn-eliminar {
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 6px;
+.btn-action {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
     color: white;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
-.btn-editar {
-    background-color: #fbb93e; /* Azul */
+.btn-ver {
+    background-color: #17a2b8;
 }
 
-.btn-editar:hover {
-    background-color: #05825a;
-    transform: translateY(-2px);
+.btn-ver:hover {
+    background-color: #138496;
 }
 
 .btn-eliminar {
-    background-color: #f43232; /* Azul */
-    margin-left: 5px;
+    background-color: #dc3545;
 }
 
 .btn-eliminar:hover {
-    background-color: #04000c;
-    transform: translateY(-2px);
+    background-color: #c82333;
 }
 
-/* Botón Mostrar Todos */
-.btn-mostrar-todos {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 8px 14px;
-    background-color: #240582;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-mostrar-todos:hover { background-color: #52b3dc; }
-
-/* Popup tipo MessageBox */
+/* ==================================================
+   POPUP FLASH MESSAGE
+================================================== */
 #popup-message {
     position: fixed;
     top: 20px;
@@ -179,8 +340,110 @@ button:hover, input[type="submit"]:hover, input[type="reset"]:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 1000;
     font-weight: 600;
-    display: none; /* inicialmente oculto */
+    display: none;
+    transition: all 0.3s ease;
 }
 
+/* ==================================================
+   DETALLE DE CLIENTE
+================================================== */
+.detail-container {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.detail-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+.detail-item {
+    flex: 1;
+    min-width: 45%;
+    padding: 5px 0;
+}
+
+.full-width .detail-item {
+    min-width: 100%;
+}
+
+/* ==================================================
+   BOTONES GENERALES
+================================================== */
+.btn-primary, .btn-secondary, .btn-cancel {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom, #5d9cec, #4b6cb7);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-image: linear-gradient(to bottom, #4b6cb7, #5d9cec);
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #6c757d;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    .filter-search-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    table th, table td {
+        font-size: 0.85em;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+}
 
 
