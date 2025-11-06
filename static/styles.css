@@ -446,4 +446,11 @@ tr:hover {
     }
 }
 
+/* ===== Encabezados ===== */
+.content-area h1 {
+    color: #2c68a5; /* Cambia este valor al color que quieras */
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 

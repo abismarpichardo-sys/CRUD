@@ -190,6 +190,10 @@ def eliminar(id):
     
     return redirect(url_for('index'))
 
+# --- nueva ruta para enviar correo ---
+@app.route('/enviar_correo')
+def enviar_correo():
+    return render_template('enviar_correo.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

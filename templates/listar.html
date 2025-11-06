@@ -40,6 +40,7 @@
                     <th>Cédula / RUC</th>
                     <th>Email</th>
                     <th>Teléfono</th>
+                    <th>Ciudad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -73,6 +74,8 @@
                     
                     <td>{{ cliente.email }}</td>
                     <td>{{ cliente.phone }}</td>
+                    <td>{{ cliente.city }}</td>
+
                     
                     <td class="acciones">
                         <a href="{{ url_for('ver_cliente', id=cliente.id) }}" class="btn-action btn-ver">
