@@ -256,3 +256,14 @@ def verificar_identificacion_unica(id_card_number=None, ruc=None):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
